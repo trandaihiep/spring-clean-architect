@@ -2,6 +2,7 @@ package com.example.demo.interfaces.web;
 
 import com.example.demo.application.usecase.AdminUseCase;
 import com.example.demo.infrastructure.config.AppSecurityProperties;
+import com.example.demo.domain.port.KeycloakAdminPort;
 import com.example.demo.infrastructure.security.MethodSecurityConfig;
 import com.example.demo.infrastructure.security.SecurityConfig;
 import org.junit.jupiter.api.Test;
@@ -26,6 +27,9 @@ class AdminControllerTest {
     @MockBean
     private AdminUseCase adminUseCase;
 
+    @MockBean
+    private KeycloakAdminPort keycloakAdminPort;
+
     @Test
     void adminRequiresAuthentication() throws Exception {
         mockMvc.perform(get("/api/admin/ping"))
@@ -47,4 +51,3 @@ class AdminControllerTest {
             .andExpect(status().isOk());
     }
 }
-
